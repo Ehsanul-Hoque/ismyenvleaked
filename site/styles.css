@@ -618,10 +618,17 @@ input[type='file']:focus-visible + .btn,
 .report {
   display: grid;
   grid-template-columns: 1fr;
-  margin: 0 0 40px;
+  margin: 0;
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   overflow: hidden;
+}
+
+/* Generous space above, so the report screenshots cleanly on its own. */
+.divider {
+  margin: 96px 0 48px;
+  border: none;
+  border-top: 1px solid var(--border);
 }
 @media (min-width: 640px) {
   .report {
