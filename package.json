@@ -1,0 +1,19 @@
+{
+  "name": "ismyenvleaked",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A joke .env leak checker. Nothing you paste ever leaves your browser.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "check": "tsc",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "dev": "npx --yes serve@14 site -l 4321",
+    "og": "sh og/render.sh"
+  },
+  "devDependencies": {
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.3"
+  }
+}

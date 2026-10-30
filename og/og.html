@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../site/styles.css" />
+    <style>
+      @font-face {
+        font-family: 'Geist Variable';
+        font-weight: 100 900;
+        src: url('../site/fonts/geist.woff2') format('woff2-variations');
+      }
+      @font-face {
+        font-family: 'Geist Mono Variable';
+        font-weight: 100 900;
+        src: url('../site/fonts/geist-mono.woff2') format('woff2-variations');
+      }
+      html,
+      body {
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+      }
+      .og {
+        display: grid;
+        grid-template-columns: 1fr 440px;
+        gap: 56px;
+        align-items: center;
+        height: 100%;
+        padding: 72px 80px;
+      }
+      .og h1 {
+        font-size: 76px;
+        line-height: 1.02;
+        letter-spacing: -0.02em;
+      }
+      .og .lede {
+        font-size: 26px;
+        line-height: 1.45;
+        margin: 24px 0 0;
+      }
+      .og .eyebrow {
+        font-size: 20px;
+        margin-bottom: 20px;
+      }
+      .og .url {
+        margin-top: 36px;
+        font-family: var(--font-mono);
+        font-size: 20px;
+        color: var(--text-muted);
+      }
+      .file {
+        background: var(--bg-elevated);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 28px 30px;
+        font-family: var(--font-mono);
+        font-size: 19px;
+        line-height: 1.75;
+        color: var(--text-secondary);
+        white-space: pre;
+        overflow: hidden;
+      }
+      .file .k {
+        color: var(--text-primary);
+      }
+      .file .bar {
+        background: var(--text-primary);
+        color: transparent;
+        border-radius: 3px;
+      }
+      .og .verdict {
+        font-size: 18px;
+        margin-bottom: 20px;
+        padding: 4px 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="og">
+      <div>
+        <p class="eyebrow">Free · Instant · Totally legit</p>
+        <h1>Is your .env leaked?</h1>
+        <p class="lede">
+          Paste it in. We'll check hacker databases, GitHub and AI agents' chat history.
+        </p>
+        <p class="url">ismyenvleaked.ehsanfahad.dev</p>
+      </div>
+      <div>
+        <p class="verdict">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="m21.73 18-8-14a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3ZM12 9v4m0 4h.01"
+            />
+          </svg>
+          Exposed
+        </p>
+        <div class="file">
+          <span class="k">OPENAI_API_KEY</span>=<span class="bar">sk-proj-xxxx</span>
+          <span class="k">STRIPE_SECRET</span>=<span class="bar">sk_live_xxx</span>
+          <span class="k">AWS_SECRET</span>=<span class="bar">hunter2hunter</span>
+          <span class="k">DATABASE_URL</span>=<span class="bar">postgres://</span>
+          <span class="k">JWT_SECRET</span>=<span class="bar">changeme</span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
