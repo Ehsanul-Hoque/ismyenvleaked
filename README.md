@@ -40,6 +40,8 @@ npm run og         # re-render site/og.png from og/og.html (needs Google Chrome)
 
 `_headers` only takes effect on Cloudflare Pages, so the CSP isn't applied by the local dev server.
 
+Browsers cache `styles.css`, `theme-init.js` and `app.js` for hours, so when you change any of them, bump the `?v=` number on all three in `index.html`. Otherwise visitors get the new HTML with the old script.
+
 ## Deployment
 
 Cloudflare Pages, connected to this repo:
