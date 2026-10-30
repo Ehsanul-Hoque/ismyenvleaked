@@ -170,7 +170,13 @@ async function loadFile(file) {
     return;
   }
   // file.text() reads the file locally in the browser. No upload happens.
-  input.value = await file.text();
+  const text = await file.text();
+  // No accept= filter on the input (macOS greys out dotfiles like .env), so reject binaries here.
+  if (text.includes('\0')) {
+    setError("That doesn't look like a .env file. Nice try, though.");
+    return;
+  }
+  input.value = text;
   setError('');
   updateKeyCount();
 }

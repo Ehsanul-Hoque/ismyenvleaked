@@ -34,11 +34,11 @@
     <link rel="preload" href="/fonts/geist.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/geist-mono.woff2" as="font" type="font/woff2" crossorigin />
     <!-- Bump ?v= whenever styles.css, theme-init.js or app.js change: the CDN tells browsers to cache them for hours. -->
-    <link rel="stylesheet" href="/styles.css?v=3" />
+    <link rel="stylesheet" href="/styles.css?v=4" />
 
     <!-- Blocking on purpose: sets the theme class before first paint, so no flash. -->
-    <script src="/theme-init.js?v=3"></script>
-    <script src="/app.js?v=3" defer></script>
+    <script src="/theme-init.js?v=4"></script>
+    <script src="/app.js?v=4" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -114,7 +114,10 @@
             ></textarea>
             <div class="drop-overlay" aria-hidden="true">Drop your .env here</div>
           </div>
-          <p id="env-help" class="hint">Paste it, drop the file in, or upload it.</p>
+          <p id="env-help" class="hint">
+            Paste it, drop the file in, or upload it. On a Mac, press ⌘ ⇧ . in the file picker to
+            show hidden files like .env.
+          </p>
           <p id="env-error" class="error" data-env-error role="alert"></p>
 
           <div class="actions">
@@ -125,13 +128,7 @@
                 </svg>
                 Upload .env
               </label>
-              <input
-                id="env-file"
-                class="visually-hidden"
-                type="file"
-                accept=".env,.txt,text/plain"
-                data-env-file
-              />
+              <input id="env-file" class="visually-hidden" type="file" data-env-file />
               <button type="button" class="btn btn-ghost" data-sample>Use a sample .env</button>
             </div>
             <button type="submit" class="btn btn-primary">
