@@ -152,8 +152,10 @@
       <!-- Step 2: the fake investigation -->
       <section class="panel" data-panel="investigate" aria-labelledby="investigate-title" hidden>
         <p class="eyebrow">Case #<span data-case-id>000000</span></p>
-        <h1 id="investigate-title" tabindex="-1">Investigating your .env</h1>
-        <p class="lede">Please don't close this tab. Our agents are working very hard.</p>
+        <h1 id="investigate-title" tabindex="-1" data-investigate-title>Investigating your .env</h1>
+        <p class="lede" data-investigate-lede>
+          Please don't close this tab. Our agents are working very hard.
+        </p>
 
         <div
           class="progress"
@@ -168,6 +170,16 @@
         </div>
 
         <ol class="steps" data-steps aria-live="polite"></ol>
+
+        <div class="actions reveal-actions" data-reveal-actions hidden>
+          <span class="hint">Brace yourself.</span>
+          <button type="button" class="btn btn-primary" data-reveal>
+            See the verdict
+            <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12h14m-7-7 7 7-7 7" />
+            </svg>
+          </button>
+        </div>
       </section>
 
       <!-- Step 3: the verdict -->
@@ -219,7 +231,7 @@
               target="_blank"
               rel="noopener noreferrer"
               >read the source</a
-            >. It's one HTML file and under 300 lines of JavaScript.
+            >. It's one HTML file and about 300 lines of JavaScript.
           </p>
         </aside>
 

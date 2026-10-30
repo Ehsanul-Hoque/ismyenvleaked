@@ -216,15 +216,33 @@ function initScanner() {
     void investigate(parseKeyNames(input.value));
   });
 
+  $('[data-reveal]', HTMLButtonElement).addEventListener('click', reveal);
+
   $('[data-restart]', HTMLButtonElement).addEventListener('click', () => {
     show('scan');
     input.focus();
   });
 }
 
+const INVESTIGATING_TITLE = 'Investigating your .env';
+const INVESTIGATING_LEDE = "Please don't close this tab. Our agents are working very hard.";
+
+/** When the current investigation started, so the verdict can say how long ago you leaked. */
+let startedAt = 0;
+
+/** @param {number} seconds */
+function formatAgo(seconds) {
+  if (seconds < 60) return `${seconds} ${seconds === 1 ? 'second' : 'seconds'} ago`;
+  const minutes = Math.floor(seconds / 60);
+  return `${minutes} ${minutes === 1 ? 'minute' : 'minutes'} ago`;
+}
+
 /** @param {string[]} keys */
 async function investigate(keys) {
-  const startedAt = Date.now();
+  startedAt = Date.now();
+  const title = $('[data-investigate-title]', HTMLElement);
+  const lede = $('[data-investigate-lede]', HTMLElement);
+  const revealActions = $('[data-reveal-actions]', HTMLElement);
   const list = $('[data-steps]', HTMLOListElement);
   const progress = $('[data-progress]', HTMLElement);
   const bar = $('[data-progress-bar]', HTMLElement);
@@ -233,6 +251,9 @@ async function investigate(keys) {
   input.value = '';
   updateKeyCount();
 
+  title.textContent = INVESTIGATING_TITLE;
+  lede.textContent = INVESTIGATING_LEDE;
+  revealActions.hidden = true;
   list.replaceChildren();
   bar.style.setProperty('width', '0%');
   progress.setAttribute('aria-valuenow', '0');
@@ -269,11 +290,19 @@ async function investigate(keys) {
     progress.setAttribute('aria-valuenow', String(percent));
   }
 
-  await sleep(700);
+  await sleep(500);
 
-  const seconds = Math.round((Date.now() - startedAt) / 1000);
+  // Wait for a click instead of jumping to the verdict, so people can screenshot the log.
   $('[data-report-count]', HTMLElement).textContent = String(keys.length);
-  $('[data-report-when]', HTMLElement).textContent = `${seconds} seconds ago`;
+  title.textContent = 'Investigation complete';
+  lede.textContent = 'Our agents found something. Screenshot this for your records.';
+  revealActions.hidden = false;
+  $('[data-reveal]', HTMLButtonElement).focus({ preventScroll: true });
+}
+
+function reveal() {
+  const seconds = Math.round((Date.now() - startedAt) / 1000);
+  $('[data-report-when]', HTMLElement).textContent = formatAgo(seconds);
   show('result');
 }
 

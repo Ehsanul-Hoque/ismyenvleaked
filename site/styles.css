@@ -444,6 +444,12 @@ h2 {
   gap: 12px;
   margin-top: 24px;
 }
+.actions .hint {
+  margin: 0;
+}
+.reveal-actions:not([hidden]) {
+  animation: fade-up var(--dur-slow) var(--ease-out);
+}
 .actions-secondary {
   display: flex;
   flex-wrap: wrap;
